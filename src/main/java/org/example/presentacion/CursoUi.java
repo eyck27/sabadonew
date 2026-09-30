@@ -1,16 +1,16 @@
 package org.example.presentacion;
 
-import org.example.business.Estudiante;
-import org.example.business.EstudianteService;
+import org.example.business.Curso;
+import org.example.business.CursoService;
 import java.util.Scanner;
 
-public class EstudianteUI {
-    private static final EstudianteService service = new EstudianteService();
+public class CursoUI {
+    private static final CursoService service = new CursoService();
 
     public static void mostrarMenu(Scanner sc) {
         int opcion;
         do {
-            System.out.println("\n=== GESTIÓN ESTUDIANTE ===");
+            System.out.println("\n=== GESTIÓN CURSOS ===");
             System.out.println("1. Registrar");
             System.out.println("2. Listar");
             System.out.println("3. Actualizar");
@@ -25,18 +25,19 @@ public class EstudianteUI {
                     System.out.print("Id: ");
                     int id = sc.nextInt();
                     sc.nextLine();
-                    System.out.print("Nombre: ");
+                    System.out.print("Nombre del Curso: ");
                     String nombre = sc.nextLine();
-                    System.out.print("Correo: ");
-                    String correo = sc.nextLine();
-                    service.registrar(new Estudiante(id, nombre, correo));
-                    System.out.println("Estudiante Registrado");
+                    System.out.print("Créditos: ");
+                    int creditos = sc.nextInt();
+                    sc.nextLine();
+                    service.registrar(new Curso(id, nombre, creditos));
+                    System.out.println("Curso Registrado correctamente.");
                     break;
 
                 case 2:
-                    System.out.println("\n--- Lista de Estudiantes ---");
-                    service.listar().forEach(e -> 
-                        System.out.println("ID: " + e.getId() + " | Nombre: " + e.getNombre() + " | Correo: " + e.getCorreo())
+                    System.out.println("\n--- Lista de Cursos ---");
+                    service.listar().forEach(c -> 
+                        System.out.println("ID: " + c.getId() + " | Nombre: " + c.getNombre() + " | Créditos: " + c.getCreditos())
                     );
                     break;
 
@@ -46,12 +47,13 @@ public class EstudianteUI {
                     sc.nextLine();
                     System.out.print("Nuevo Nombre: ");
                     String nomAct = sc.nextLine();
-                    System.out.print("Nuevo Correo: ");
-                    String corAct = sc.nextLine();
-                    if (service.actualizar(new Estudiante(idAct, nomAct, corAct))) {
-                        System.out.println("Estudiante actualizado correctamente.");
+                    System.out.print("Nuevos Créditos: ");
+                    int credAct = sc.nextInt();
+                    sc.nextLine();
+                    if (service.actualizar(new Curso(idAct, nomAct, credAct))) {
+                        System.out.println("Curso actualizado correctamente.");
                     } else {
-                        System.out.println("Estudiante no encontrado.");
+                        System.out.println("Curso no encontrado.");
                     }
                     break;
 
@@ -60,9 +62,9 @@ public class EstudianteUI {
                     int idElim = sc.nextInt();
                     sc.nextLine();
                     if (service.eliminar(idElim)) {
-                        System.out.println("Estudiante eliminado correctamente.");
+                        System.out.println("Curso eliminado correctamente.");
                     } else {
-                        System.out.println("Estudiante no encontrado.");
+                        System.out.println("Curso no encontrado.");
                     }
                     break;
 

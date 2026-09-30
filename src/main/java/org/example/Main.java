@@ -1,41 +1,37 @@
 package org.example;
 
-
-
 import org.example.presentacion.EstudianteUI;
-
 import java.util.Scanner;
 
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    static void main() {
-        Scanner sc= new Scanner(System.in);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         int opcion;
 
-        do{
+        do {
             System.out.println("\n=== SISTEMA DE GESTIÓN ACADÉMICA ===");
             System.out.println("1. Gestionar estudiantes");
             System.out.println("2. Gestionar cursos");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
-            opcion=sc.nextInt();
+            opcion = sc.nextInt();
 
-            switch (opcion){
+            switch (opcion) {
                 case 1:
                     System.out.println("Ha elegido Gestionar Estudiante.");
                     EstudianteUI.mostrarMenu(sc);
+                    break;
+                case 2:
+                    System.out.println("Ha elegido Gestionar Cursos (En construcción).");
                     break;
                 case 0:
                     System.out.println("Sistema finalizado.");
                     break;
                 default:
-                    System.out.println("Opcion no valida");
-
+                    System.out.println("Opción no válida");
             }
-        }while(opcion!=0);
-        sc.close();
+        } while (opcion != 0);
 
+        sc.close();
     }
 }
